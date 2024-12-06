@@ -1,20 +1,25 @@
-module mul_8bit(
-    input logic rst, 
+module multiplier_8bit #(
+    parameter DATA_WIDTH = 8, 
+    parameter PROD_WIDTH = DATA_WIDTH * 2
+)(
     input logic clk, 
-    input logic [7:0] a_in, 
-    input logic [7:0] b_in, 
-    input logic mul_st, 
-    input logic mul_dn, 
-
-    output logic [15:0] out
+    input logic rst,
+    input logic ebl,
+    input logic [DATA_WIDTH-1:0] a_in, 
+    input logic [DATA_WIDTH-1:0] b_in, 
+    output logic [PROD_WIDTH-1:0] out
 ); 
 
-    always @(posedge clk) begin
-        if (mul_st == 1'b1) begin
-            for(int i = 0; i < $size(out); i++) {
-                
-            }
+    logic [PROD_WIDTH-1:0] tmp; 
+
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            tmp <= {PROD_WIDTH{1'b0}}; 
+        end else if (ebl) begin
+            tmp <= a_in * b_in;  
         end
     end
+
+    assign out = tmp;
 
 endmodule
