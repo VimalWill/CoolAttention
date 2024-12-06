@@ -72,3 +72,47 @@ module full_adder(
     end
 
 endmodule
+
+module adder_16bit #(
+    parameter DATA_WIDTH = 16
+)(
+    input logic clk, 
+    input logic rst, 
+    input logic ebl,
+    input logic [DATA_WIDTH-1:0] a_in, 
+    input logic [DATA_WIDTH-1:0] b_in, 
+    output logic [DATA_WIDTH-1:0] out,
+    output logic carry_out
+);
+
+    logic [DATA_WIDTH-1:0] carry;
+
+    half_adder ha_1(
+        .clk(clk), 
+        .rst(rst), 
+        .ebl(ebl), 
+        .a_in(a_in[0]), 
+        .b_in(b_in[0]), 
+        .sum(out[0]), 
+        .carry(carry[0])
+    );
+
+    genvar i;
+    generate
+        for (i = 1; i < DATA_WIDTH; i++) begin : full_adders
+            full_adder fa_i(
+                .clk(clk), 
+                .rst(rst), 
+                .ebl(ebl), 
+                .a_in(a_in[i]), 
+                .b_in(b_in[i]), 
+                .crry_in(carry[i-1]), 
+                .sum(out[i]), 
+                .carry(carry[i])
+            );
+        end
+    endgenerate
+
+    assign carry_out = carry[DATA_WIDTH-1];
+
+endmodule
