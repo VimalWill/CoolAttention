@@ -6,7 +6,10 @@ TOPLEVEL ?= multiplier_8bit
 MODULE ?= multiplier_tb
 
 # Set paths for Verilog source files and testbench
-VERILOG_SOURCES = ../rtl/multiplier.sv
+VERILOG_SOURCES = \
+    ../rtl/mac.sv \
+    ../rtl/multiplier.sv \
+    ../rtl/adder.sv
 # PYTHONPATH := $(PWD)/test/
 
 # Include Cocotb's standard makefile
