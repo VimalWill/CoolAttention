@@ -2,8 +2,10 @@ TOPLEVEL_LANG ?= verilog
 SIM ?= verilator
 
 # Top-level module and testbench module
-TOPLEVEL ?= multiplier_8bit
+TOPLEVEL ?= adder_nb
 MODULE ?= multiplier_tb
+
+SIM_ARGS += --trace
 
 # Set paths for Verilog source files and testbench
 VERILOG_SOURCES = \
