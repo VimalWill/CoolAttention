@@ -69,7 +69,7 @@ module full_adder(
     end
 endmodule
 
-module adder_16bit #(
+module adder_nb #(
     parameter DATA_WIDTH = 16
 )(
     input logic clk,
@@ -92,7 +92,7 @@ module adder_16bit #(
         .carry(carry[0])
     );
 
-    genvar i;
+    genvar i; 
     generate
         for (i = 1; i < DATA_WIDTH; i++) begin : full_adders
             full_adder fa_i(
