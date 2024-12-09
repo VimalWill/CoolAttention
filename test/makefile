@@ -2,7 +2,7 @@ TOPLEVEL_LANG ?= verilog
 SIM ?= verilator
 
 # Top-level module and testbench module
-TOPLEVEL ?= adder_nb
+TOPLEVEL ?= mac_nbit
 MODULE ?= multiplier_tb
 
 SIM_ARGS += --trace
