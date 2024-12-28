@@ -2,13 +2,14 @@ TOPLEVEL_LANG ?= verilog
 SIM ?= verilator
 
 # Top-level module and testbench module
-TOPLEVEL ?= mac_nbit
-MODULE ?= multiplier_tb
+TOPLEVEL ?= mac_cluster
+MODULE ?= cluster_tb
 
 SIM_ARGS += --trace
 
 # Set paths for Verilog source files and testbench
 VERILOG_SOURCES = \
+    ../rtl/cluster.sv \
     ../rtl/mac.sv \
     ../rtl/multiplier.sv \
     ../rtl/adder.sv
